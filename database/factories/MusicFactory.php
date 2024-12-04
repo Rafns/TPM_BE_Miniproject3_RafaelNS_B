@@ -16,9 +16,9 @@ class MusicFactory extends Factory
     {
         return [
             'title' => $this->faker->unique()->sentence( 3),
-            'penyanyi' => $this->faker->name,
+            'singer' => $this->faker->name,
             'publication_date' => $this->faker->date(),
-            'durasi' => $this->faker->numberBetween(120,360),
+            'duration' => $this->faker->numberBetween(120,360),
             'category_id' => Category::inRandomOrder()->value('id'),
 
         ];

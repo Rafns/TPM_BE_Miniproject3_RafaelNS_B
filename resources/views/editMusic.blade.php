@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Music</title>
+    <title>Edit Book</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -29,52 +29,55 @@
     </nav>
 
     <div class="p-5">
-        <h1 class="text-center">Create Music</h1>
-        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+        <h1 class="text-center">Edit Music</h1>
+        <form action="{{route('updateMusic', $music->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('patch')
+
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
-                <input value="{{old('title')}}" type="text" class="form-control" id="" name="title">
+                <input value="{{old('title', $music->title) }}" type="text" class="form-control" id="" name="title">
             </div>
 
-           @error('title')
-           <div class="alert alert-warning" role="alert">
-            {{$message}}
-          </div>
-           @enderror
+            @error('title')
+            <div class="alert alert-warning" role="alert">
+             {{$message}}
+           </div>
+            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Singer</label>
-                <input value="{{old('singer')}}" type="text" class="form-control" id="" name="singer">
+                <input value="{{old('singer', $music->singer) }}" type="text" class="form-control" id="" name="singer">
             </div>
 
             @error('singer')
-           <div class="alert alert-warning" role="alert">
-            {{$message}}
-          </div>
-           @enderror
+            <div class="alert alert-warning" role="alert">
+             {{$message}}
+           </div>
+            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Publication Date</label>
-                <input value="{{old('publication_date')}}"type="date" class="form-control" id="" name="publication_date">
+                <input value="{{old('publication_date', $music->publication_date) }}"type="date" class="form-control" id="" name="publication_date">
             </div>
 
             @error('publication_date')
-           <div class="alert alert-warning" role="alert">
-            {{$message}}
-          </div>
-           @enderror
+            <div class="alert alert-warning" role="alert">
+             {{$message}}
+           </div>
+            @enderror
+
 
             <div class="mb-3">
                 <label for="" class="form-label">Duration (second)</label>
-                <input value="{{old('duration')}}" type="number" class="form-control" id="" name="duration">
+                <input value="{{old('duration', $music->duration) }}" type="number" class="form-control" id="" name="duration">
             </div>
 
             @error('duration')
-           <div class="alert alert-warning" role="alert">
-            {{$message}}
-          </div>
-           @enderror
+            <div class="alert alert-warning" role="alert">
+             {{$message}}
+           </div>
+            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Image</label>
@@ -82,10 +85,10 @@
             </div>
 
             @error('image')
-           <div class="alert alert-warning" role="alert">
-            {{$message}}
-          </div>
-           @enderror
+            <div class="alert alert-warning" role="alert">
+             {{$message}}
+           </div>
+            @enderror
 
             <div class="mb-3">
                 <label for="" class="form-label">Genre</label>

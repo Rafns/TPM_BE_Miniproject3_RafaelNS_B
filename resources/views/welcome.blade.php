@@ -41,17 +41,22 @@
             @foreach ($musics as $music)
             <div class="col">
                 <div class="card h-100">
-                    <img src="" class="card-img-top" alt="...">
+                    <img src="{{asset('/storage/images/'.$music->image)}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Title: {{$music->title}}</h5>
-                        <p class="card-text">Singer: {{$music->penyanyi}}</p>
+                        <p class="card-text">Singer: {{$music->singer}}</p>
                         <p class="card-text">Publication Date: {{$music->publication_date}}</p>
-                        <p class="card-text">Duration (second): {{$music->durasi}}</p>
+                        <p class="card-text">Duration (second): {{$music->duration}}</p>
                         <p class="card-text">Genre: {{$music->category->category_name}}</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="" class="btn btn-success">Edit</a>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <a href="{{route('editMusic', $music->id)}}" class="btn btn-success">Edit</a>
+
+                        <form action="{{route('deleteMusic', $music->id)}}" method= "POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>

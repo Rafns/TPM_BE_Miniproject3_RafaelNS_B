@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('music', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('penyanyi');
+            $table->string('singer');
             $table->date('publication_date');
-            $table->integer('durasi');
+            $table->integer('duration');
+            $table->string('image');
             $table->timestamps();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
