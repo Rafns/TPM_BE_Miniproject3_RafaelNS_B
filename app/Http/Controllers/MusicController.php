@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyEmail;
 use App\Models\Category;
 use App\Models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MusicController extends Controller
 {
@@ -37,6 +39,9 @@ class MusicController extends Controller
             "image" => $fileName
         ]);
 
+        Mail::to("user@gmail.com")->send(new MyEmail(
+            ["title"=>$request->title, "singer"=>$request->singer, "publication_date"=>$request->publication_date]
+        ));
         return redirect(route('welcome'));
 
     }
